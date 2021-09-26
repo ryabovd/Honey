@@ -4,7 +4,7 @@ def open_file(file):
     return honey_file
 
 
-def zakaz_dict(file_info):
+def order_dict(file_info):
     '''Принимаем информацию из файла
     Возвращаем словарь словарей
     заказ->пчеловод->заказчик->сорт меда: количество'''
@@ -31,13 +31,13 @@ def zakaz_dict(file_info):
 
 def beekeeper_order_dict(zakaz):
     beekeeper_order = {}
-    for beekeep in zakaz:
-        beekeeper_order[beekeep] = {}
-        for cust in zakaz[beekeep]:
-            for honey in zakaz[beekeep][cust]:
-                if honey not in beekeeper_order[beekeep]:
-                    beekeeper_order[beekeep][honey] = 0
-                beekeeper_order[beekeep][honey] += zakaz[beekeep][cust][honey]
+    for beekeeper in zakaz:
+        beekeeper_order[beekeeper] = {}
+        for cust in zakaz[beekeeper]:
+            for honey in zakaz[beekeeper][cust]:
+                if honey not in beekeeper_order[beekeeper]:
+                    beekeeper_order[beekeeper][honey] = 0
+                beekeeper_order[beekeeper][honey] += zakaz[beekeeper][cust][honey]
     return beekeeper_order
 
 
@@ -59,7 +59,7 @@ honey_file = open_file(file)
 Собираем информацию о заказе из файла в словари:
 заказ->пчеловод->заказчик->сорт меда: количество
 '''
-zakaz = zakaz_dict(honey_file)
+zakaz = order_dict(honey_file)
 
 '''
 Закрываем файл
